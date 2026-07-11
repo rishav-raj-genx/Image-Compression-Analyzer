@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Image Compression Analyzer</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">Image Compression Analyzer</div>
+    <div class="controls">
+      <input id="fileInput" type="file" accept="image/*" hidden />
+      <button id="btnChoose" class="btn">Choose Image</button>
+      <button id="btnDownload" class="btn primary" disabled>Download Compressed</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="uploader" id="dropZone">
+      <div class="uploader-inner">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M19 15v4H5v-4H3v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4h-2zM11 7v6H9l3 4 3-4h-2V7h-2zm0-5v2h2V2h-2z"/></svg>
+        <div class="hint">Drop an image here or click "Choose Image"</div>
+      </div>
+    </section>
+
+    <section class="controls-panel">
+      <label class="slider-row">
+        <div>Quality: <span id="qualityVal">85</span>%</div>
+        <input id="quality" type="range" min="1" max="100" value="85" />
+      </label>
+      <div class="action-row">
+        <button id="btnCompress" class="btn primary" disabled>Compress & Analyze</button>
+        <button id="btnReset" class="btn" disabled>Reset</button>
+      </div>
+    </section>
+
+    <section class="compare-grid">
+      <div class="card">
+        <h3>Original</h3>
+        <div class="preview" id="origPreview">
+          <canvas id="origCanvas"></canvas>
+        </div>
+        <ul class="meta" id="origMeta"></ul>
+      </div>
+
+      <div class="card">
+        <h3>Compressed</h3>
+        <div class="preview" id="compPreview">
+          <canvas id="compCanvas"></canvas>
+        </div>
+        <ul class="meta" id="compMeta"></ul>
+      </div>
+
+      <div class="card full">
+        <h3>Analysis</h3>
+        <div class="analysis" id="analysis">
+          <div class="stat"><strong>Compression Ratio:</strong> <span id="ratio">—</span></div>
+          <div class="stat"><strong>PSNR:</strong> <span id="psnr">—</span></div>
+          <div class="stat"><strong>Estimated Quality Loss:</strong> <span id="qloss">—</span></div>
+          <div class="stat"><strong>Time Taken:</strong> <span id="time">—</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">Drag & drop, slider-driven compression, PSNR-based quality estimation. Client-side only.</footer>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
